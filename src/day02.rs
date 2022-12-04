@@ -2,10 +2,8 @@ pub fn part1(input: &str) -> u32 {
     input.as_bytes()[..input.len() - 1]
         .split(|c| *c == b'\n')
         .map(|round| {
-            #[allow(clippy::char_lit_as_u8)]
-            let abc = round[0] - 'A' as u8;
-            #[allow(clippy::char_lit_as_u8)]
-            let xyz = round[2] - 'X' as u8;
+            let abc = round[0] - b'A';
+            let xyz = round[2] - b'X';
             xyz as u32
                 + 1
                 + match (abc, xyz) {
@@ -18,7 +16,7 @@ pub fn part1(input: &str) -> u32 {
                     (2, 0) => 6,
                     (2, 1) => 0,
                     (2, 2) => 3,
-                    _ => unreachable!(),
+                    _ => panic!("invalid input"),
                 }
         })
         .sum()
@@ -28,10 +26,8 @@ pub fn part2(input: &str) -> u32 {
     input.as_bytes()[..input.len() - 1]
         .split(|c| *c == b'\n')
         .map(|round| {
-            #[allow(clippy::char_lit_as_u8)]
-            let abc = round[0] - 'A' as u8;
-            #[allow(clippy::char_lit_as_u8)]
-            let xyz = round[2] - 'X' as u8;
+            let abc = round[0] - b'A';
+            let xyz = round[2] - b'X';
             3 * xyz as u32
                 + match (abc, xyz) {
                     (0, 0) => 3,
@@ -43,7 +39,7 @@ pub fn part2(input: &str) -> u32 {
                     (2, 0) => 2,
                     (2, 1) => 3,
                     (2, 2) => 1,
-                    _ => unreachable!(),
+                    _ => panic!("invalid input"),
                 }
         })
         .sum()
